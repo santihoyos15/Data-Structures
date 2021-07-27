@@ -37,14 +37,13 @@ class MyArray {
     unshift(item){
         this.push(0);
 
-        for (let i = 0; i < this.length; i++){
-            const rightItem = this.data[i + 1];
-            this.data[i] = rightItem;
+        for (let i = this.length - 1; i > 0; i--){
+            let leftItem = this.data[i - 1]; 
+            this.data[i] = leftItem;
         }
 
         this.data[0] = item;
 
-        this.length++;
         return this.length;
     }
 }
@@ -57,8 +56,10 @@ nums.push(3);
 nums.push(4);
 nums.push(5);
 nums.push(6);
+nums.push(7);
 nums.unshift(0);
 
 for (let i = 0; i < nums.length; i++){
-    console.log(nums.data[i]);
+    let element = nums.get(i);
+    console.log(element);
 }
