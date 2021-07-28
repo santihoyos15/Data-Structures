@@ -46,20 +46,26 @@ class MyArray {
 
         return this.length;
     }
+
+    delete(index){
+        const element = this.data[index];
+        for (let i = index; i < this.length; i++){
+            let rightElement = this.data[i + 1];
+            this.data[i] = rightElement;
+            // console.log(this.data[i]);
+        }
+
+        delete this.data[this.length -1];
+        this.length--;
+
+        return element;
+    }
+
 }
 
 const nums = new MyArray();
 
 nums.push(1);
 nums.push(2);
-nums.push(3);
-nums.push(4);
-nums.push(5);
-nums.push(6);
-nums.push(7);
 nums.unshift(0);
-
-for (let i = 0; i < nums.length; i++){
-    let element = nums.get(i);
-    console.log(element);
-}
+nums.delete(0);
