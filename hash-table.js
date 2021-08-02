@@ -11,7 +11,20 @@ class HashTable {
 
         return hash;
     }
-    
+
+    set(key, value){
+        const address = this.hashMethod(key); //Creating an index to store the key value pair.
+        
+        if (!this.data[address]){ //Checking whether the address exists or not.
+            this.data[address] = []; 
+        }
+        else {
+            this.data[address].push([key, value]);
+        }
+
+        return this.data;
+    }
+
 }
 
 const myHash = new HashTable(50);
