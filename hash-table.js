@@ -17,9 +17,7 @@ class HashTable {
         if (!this.data[address]){ //Checking whether the address exists or not.
             this.data[address] = []; 
         }
-        else {
             this.data[address].push([key, value]);
-        }
 
         return this.data;
     }
@@ -27,4 +25,3 @@ class HashTable {
 }
 
 const myHash = new HashTable(50);
-myHash.set("Hey", 30);
