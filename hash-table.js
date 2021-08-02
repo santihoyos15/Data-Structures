@@ -3,9 +3,9 @@ class HashTable {
         this.data = new Array(size);
     } 
 
-    hashMethod(key){
+    hashMethod(key){ //Variations of this method can be found on GitHub.
         let hash = 0;
-        for (let i = 0; key.length; i++){
+        for (let i = 0; i < key.length; i++){
             hash = (hash + key.charCodeAt(i) * i) % this.data.length;
         }
 
@@ -14,7 +14,6 @@ class HashTable {
 
     set(key, value){
         const address = this.hashMethod(key); //Creating an index to store the key value pair.
-        
         if (!this.data[address]){ //Checking whether the address exists or not.
             this.data[address] = []; 
         }
@@ -28,4 +27,4 @@ class HashTable {
 }
 
 const myHash = new HashTable(50);
-
+myHash.set("Hey", 30);
