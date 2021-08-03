@@ -35,12 +35,22 @@ class HashTable {
         return null;
     }
 
+    remove(key){
+        const address = this.hashMethod(key);
+        const currentBucket = this.data[address];
+        let item;
+        if (currentBucket){
+            for(let i = 0; i < currentBucket.length; i++){
+                if (currentBucket[i][0] === key){
+                    item = currentBucket[i].splice(i);
+                    return item;
+                }
+            }
+        }
+    }
+    
 }
 
 const myHash = new HashTable(50);
 
 myHash.set("Santiago", 19);
-myHash.set("Vanessa", 23);
-const value = myHash.get("Santiago");
-const value2 = myHash.get("Vanessa");
-console.log(value, value2);
