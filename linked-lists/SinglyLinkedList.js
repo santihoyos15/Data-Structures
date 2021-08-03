@@ -1,9 +1,16 @@
 class SinglyLinkedList {
-    constructor(data){
-        this.head = new Node(data);
+    constructor(value){
+        this.head = new Node(value);
 
         this.tail = this.head; //Assigning tail to head. 
 
         this.length = 1;
+    }
+}
+
+class Node {
+    constructor(value){
+        this.value = value;
+        this.next = null;
     }
 }
