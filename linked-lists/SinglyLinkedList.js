@@ -6,6 +6,15 @@ class SinglyLinkedList {
 
         this.length = 1;
     }
+
+    append(value){
+        const newNode = new Node(value);
+            
+        this.tail.next = newNode;
+        this.tail = newNode;
+        
+        this.length++;
+    }
 }
 
 class Node {
