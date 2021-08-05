@@ -15,12 +15,16 @@ class SinglyLinkedList {
         
         this.length++;
     }
-    
+
     prepend(value){
         const newNode = new Node(value);
         newNode.next = this.head; 
         this.head = newNode;
         this.length++;
+    }
+
+    insert(value){
+        
     }
 }
 
