@@ -31,7 +31,7 @@ class SinglyLinkedList {
         if (index > this.length - 1 ){// If the given index overflows, we append.
             console.log("Appending to last position");
             return this.append(value);
-        }else if (index == 0){
+        }else if (index == 0){//Or we prepend.
             return this.prepend(value);
         }
         const newNode = new Node(value);
@@ -49,6 +49,42 @@ class SinglyLinkedList {
             position++;
         }while (currentNode.next) //While currentNode doesn't point to null we are fine.
         this.length++;
+    }
+
+    remove(index){
+        if (index > 0 && index < this.length - 1){
+            const left = this.getNode(index - 1);
+            const currentNode = left.next;
+            const right = currentNode.next;
+            
+            currentNode.next = null;
+            left.next = right;
+            
+        }else if(index == 0){
+            const head = this.head;
+            const next = head.next;
+            
+            head.next = null;
+            this.head = next;
+        }else if(index == this.length - 1){
+            const left = this.getNode(index - 1);
+            left.next = null;
+            this.tail = left;
+        }else{
+            console.error("Invalid index");
+            return null;
+        }
+        this.length--;
+    }
+
+    getNode(index){
+        let currentNode = this.head;
+        let counter = 0;
+        while (counter != index) {
+            currentNode = this.getNext(currentNode);
+            counter++;
+        }
+        return currentNode;
     }
 
     showAll(){
@@ -77,7 +113,7 @@ const myList = new SinglyLinkedList(1);
 myList.append(2);
 myList.append(3);
 myList.append(4);
+myList.append(5)
 myList.append(6);
-
-myList.insert(5,4);
+myList.remove(7);
 myList.showAll();
