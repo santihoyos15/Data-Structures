@@ -23,10 +23,6 @@ class SinglyLinkedList {
         this.length++;
     }
 
-    getNext(node){
-        return node.next;
-    }
-
     insert(value, index){
         if (index > this.length - 1 ){// If the given index overflows, we append.
             console.log("Appending to last position");
@@ -35,38 +31,29 @@ class SinglyLinkedList {
             return this.prepend(value);
         }
         const newNode = new Node(value);
-
-        let position = 0;
-        let currentNode = this.head; //currentNode is where we store every node we traverse by.
-        do {
-            if (position == index - 1){
-                const temp = currentNode.next; //Storing temporarily the next node to link it to the new one
-                currentNode.next = newNode; //currentNode.next pointing to newNode.
-                newNode.next = temp;    //newNode.next pointing to temp;
-                break;
-            }
-            currentNode = this.getNext(currentNode); //Getting the next node.
-            position++;
-        }while (currentNode.next) //While currentNode doesn't point to null we are fine.
+        const currentNode = this.getNode(index - 1); //Getting the left node
+        const temp = currentNode.next; //Storing temporarily the next node in order to be pointed at from the new node. (Avoiding garbage collector).
+        currentNode.next = newNode; //currentNode.next pointing to newNode.
+        newNode.next = temp;    //newNode.next pointing to temp;    
         this.length++;
     }
 
     remove(index){
-        if (index > 0 && index < this.length - 1){
+        if (index > 0 && index < this.length - 1){ //Making sure it is neither the first index nor the last.
             const left = this.getNode(index - 1);
             const currentNode = left.next;
             const right = currentNode.next;
             
-            currentNode.next = null;
-            left.next = right;
+            currentNode.next = null; //deleting currentNode(The one being deleted) pointer to next node.
+            left.next = right; //Not pointing anymore to currentNode, instead, pointing to right.
             
-        }else if(index == 0){
+        }else if(index == 0){// Deleting the head and replacing it.
             const head = this.head;
             const next = head.next;
             
             head.next = null;
             this.head = next;
-        }else if(index == this.length - 1){
+        }else if(index == this.length - 1){ //Deleting the tail and replacing it.
             const left = this.getNode(index - 1);
             left.next = null;
             this.tail = left;
@@ -75,6 +62,10 @@ class SinglyLinkedList {
             return null;
         }
         this.length--;
+    }
+    //<-- HELPER METHODS -->
+        getNext(node){
+        return node.next;
     }
 
     getNode(index){
@@ -115,5 +106,5 @@ myList.append(3);
 myList.append(4);
 myList.append(5)
 myList.append(6);
-myList.remove(7);
+myList.insert(3, 2);
 myList.showAll();
