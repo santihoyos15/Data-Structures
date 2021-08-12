@@ -14,7 +14,7 @@ class HashTable {
 
     set(key, value){
         const address = this.hashMethod(key); //Creating an index to store the key value pair.
-        if (!this.data[address]){ //Checking whether the address exists or not.
+        if (!this.data[address]){ //Checking whether the key exists or not.
             this.data[address] = []; 
         }
             this.data[address].push([key, value]);
@@ -49,20 +49,20 @@ class HashTable {
         }
     }
 
-getKeys(){
-    let keyArray = [];
-    for (let i = 0; i < this.data.length; i++){
-        let currentBucket = this.data[i];
-        if (!currentBucket){
-            continue;
+    getKeys(){
+        let keyArray = [];
+        for (let i = 0; i < this.data.length; i++){
+            let currentBucket = this.data[i];
+            if (!currentBucket){
+                continue;
+            }
+            for (let j = 0; j < currentBucket.length; j++){
+                keyArray.push(currentBucket[j][0]);
+            }
         }
-        for (let j = 0; j < currentBucket.length; j++){
-            keyArray.push(currentBucket[j][0]);
-        }
-    }
 
-    return keyArray;
-}
+        return keyArray;
+    }
 }
 
 const myHash = new HashTable(50);
