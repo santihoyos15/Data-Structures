@@ -49,24 +49,18 @@ class HashTable {
         }
     }
 
-getKeys(){
-    let keyArray = [];
-    for (let i = 0; i < this.data.length; i++){
-        let currentBucket = this.data[i];
-        if (!currentBucket){
-            continue;
+    getKeys(){
+        let keyArray = [];
+        for (let i = 0; i < this.data.length; i++){
+            let currentBucket = this.data[i];
+            if (!currentBucket){
+                continue;
+            }
+            for (let j = 0; j < currentBucket.length; j++){
+                keyArray.push(currentBucket[j][0]);
+            }
         }
-        for (let j = 0; j < currentBucket.length; j++){
-            keyArray.push(currentBucket[j][0]);
-        }
+
+        return keyArray;
     }
-
-    return keyArray;
 }
-}
-
-const myHash = new HashTable(50);
-
-myHash.set("Santiago", 19);
-myHash.set("Vanessa", 23);
-myHash.set("Brandon", 18);
