@@ -36,7 +36,9 @@ class doublyLinkedList {
         return ++this.length;
     }
 
-    
+    insert(value, index){
+        
+    }
 }
 
 class Node {

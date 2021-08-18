@@ -10,7 +10,7 @@ class SinglyLinkedList {
     append(value){
         const newNode = new Node(value);
             
-        this.tail.next = newNode; //tail.next pointing to newNode
+        this.tail.next = newNode; //tail.next pointing to newNode.
         this.tail = newNode; //Now, newNode is the tail.
         
         this.length++;
