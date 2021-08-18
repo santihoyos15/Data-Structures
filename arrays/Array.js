@@ -15,7 +15,7 @@ class MyArray {
     }
 
     pop(){
-        const lastItem = this.length - 1;
+        const lastItem = this.data[this.length - 1];
         delete this.data[this.length - 1];
         this.length--;
         return lastItem;
@@ -24,7 +24,7 @@ class MyArray {
     shift(){
         const firstItem = this.data["0"];
 
-        for (let i = 0; i < this.length; i++){
+        for (let i = 0; i < this.length; i++){ // i < this.length - 1 might do it better.
             let rightItem = this.data[i + 1];
             this.data[i] = rightItem;
         }
