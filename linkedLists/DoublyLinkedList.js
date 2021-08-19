@@ -23,7 +23,7 @@ class doublyLinkedList {
     }
 
     prepend(value){
-        if (this.head == null){
+        if (this.head == null){ //Check whether the head is empty or not.
             return this.append(value);
         }else{
             const newNode = new Node(value);
@@ -37,8 +37,35 @@ class doublyLinkedList {
     }
 
     insert(value, index){
-        
+        const newNode = new Node(value);
+        currentNode = this.getNode();
     }
+
+    getNode(index){
+        const middlePoint = Math.floor(this.length / 2);
+
+        if(index > this.length - 1){//Makes sure the index don't overflow.
+            return null;
+        }
+        else if (index < middlePoint){ //Checks whether the index given is closer to the head or the tail.
+            let currentNode = this.head;
+            let counter = 0;
+                while(counter != index){ //Runs until it gets to the index given. 
+                    currentNode = currentNode.next;
+                    counter++;
+                }
+            return currentNode;
+        }else if(index >= middlePoint){ //Same, but includes the middlePoint.
+            let currentNode = this.tail;
+            let counter = this.length - 1; //Last index
+            while(counter != index){
+                currentNode = currentNode.previous;
+                counter--;
+            }
+            return currentNode;
+        }
+    }
+
 }
 
 class Node {
