@@ -37,9 +37,23 @@ class doublyLinkedList {
     }
 
     insert(value, index){
+        if (index > this.length - 1){
+            return this.append(value);
+        }else if(index == 0){
+            return this.prepend(value);
+        }
         const newNode = new Node(value);
-        currentNode = this.getNode();
+        const currentNode = this.getNode(index);
+        const left = currentNode.previous;
+        //Left and current pointers pointing to new node.
+        left.next = newNode;
+        currentNode.previous = newNode;
+        //NewNode left and right pointers pointing to left and current respectively. 
+        newNode.previous = left;
+        newNode.next = currentNode;
 
+        this.length++;
+        return newNode.value;
     }
 
     getNode(index){
