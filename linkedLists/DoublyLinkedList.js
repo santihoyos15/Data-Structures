@@ -39,6 +39,7 @@ class doublyLinkedList {
     insert(value, index){
         const newNode = new Node(value);
         currentNode = this.getNode();
+
     }
 
     getNode(index){
@@ -64,6 +65,10 @@ class doublyLinkedList {
             }
             return currentNode;
         }
+    }
+
+    get(index){
+        return this.getNode(index).value;
     }
 
 }
