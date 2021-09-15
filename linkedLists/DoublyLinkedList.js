@@ -1,4 +1,4 @@
-class doublyLinkedList {
+class DoublyLinkedList {
     constructor(){
         this.head = null;
 
@@ -85,6 +85,44 @@ class doublyLinkedList {
         return this.getNode(index).value;
     }
 
+    remove(index){
+        if(index > 0 && index < this.length - 1){ //Index who are between index 0 and this.length - 1;
+            const nodeToDelete = this.getNode(index);
+            const nodeToDeleteValue =nodeToDelete.value;
+            const previous = nodeToDelete.previous;
+            const next = nodeToDelete.next;
+
+            previous.next = next;
+            next.previous = previous;
+            nodeToDelete.previous = null;
+            nodeToDelete.next = null;
+            this.length--;
+            return nodeToDeleteValue;
+            
+        }else if (index == 0 && this.length != 1){ //When we want to delete the head.
+            const nodeToDeleteValue = this.head.value;
+            const newHead = this.head.next; //Temporarily storing new head
+            newHead.previous = null;
+            this.head.next = null;
+            this.head = newHead;
+            this.length--;
+            return nodeToDeleteValue;
+        }else if (index == 0 && this.length == 1) {
+            const nodeToDeleteValue = this.head.value;
+            this.head = null;
+            this.length--;
+            return nodeToDeleteValue;
+        }else if (index == this.length - 1){ //When we want to delete the tail.
+            const nodeToDeleteValue = this.tail.value;
+            const newTail = this.tail.previous;
+            newTail.next = null;
+            this.tail.previous = null;
+            this.tail = newTail;
+            this.length--;
+
+            return nodeToDeleteValue;
+        }
+    }
 }
 
 class Node {
