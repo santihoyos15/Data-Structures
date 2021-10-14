@@ -99,12 +99,3 @@ class Node {
         this.next = null;
     }
 }
-
-const myList = new SinglyLinkedList(1);
-myList.append(2);
-myList.append(3);
-myList.append(4);
-myList.append(5)
-myList.append(6);
-myList.insert(3, 2);
-myList.showAll();

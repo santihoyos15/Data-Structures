@@ -62,10 +62,3 @@ class MyArray {
     }
 
 }
-
-const nums = new MyArray();
-
-nums.push(1);
-nums.push(2);
-nums.unshift(0);
-nums.delete(0);
